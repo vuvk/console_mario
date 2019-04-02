@@ -1,7 +1,7 @@
 # ConsoleMario
 Simple arcade console game written in Java
 
-![ConsoleMario screenshot](https://github.com/vuvk/console_mario/screenshot/console_mario.png)
+![ConsoleMario screenshot](https://github.com/vuvk/console_mario/blob/master/screenshot/console_mario.png)
 
 ConsoleMario uses a number of open source projects to work properly:
 
