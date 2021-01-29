@@ -1,6 +1,6 @@
 /**
     ConsoleMario
-    Copyright (C) 2019 Anton "Vuvk" Shcherbatykh <vuvk69@gmail.com>
+    Copyright (C) 2019, 2021 Anton "Vuvk" Shcherbatykh <vuvk69@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,10 +17,9 @@
 */
 package com.vuvk.consolemario.logic;
 
-import com.vuvk.consolemario.map.Map;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
-import com.vuvk.consolemario.Main;
+import com.vuvk.consolemario.map.Map;
 
 /**
  *
@@ -28,21 +27,21 @@ import com.vuvk.consolemario.Main;
  */
 public abstract class GameObject {
     protected Vector2 pos;
-    
+
     protected char character;
     protected TextColor foregroundColor;
     protected TextColor backgroundColor;
     protected TextCharacter graphic;
-    
+
     protected GameObject(char character, TextColor foregroundColor, TextColor backgroundColor) {
         this.character = character;
         this.foregroundColor = foregroundColor;
         this.backgroundColor = backgroundColor;
-        
+
         pos = new Vector2();
         this.graphic = new TextCharacter(character, foregroundColor, backgroundColor);
     }
-    
+
     public void setPos(Vector2 pos) {
         this.pos = pos;
     }
@@ -53,20 +52,20 @@ public abstract class GameObject {
 
     public void setPosY(float y) {
         pos.setY(y);
-    }       
-    
+    }
+
     public Vector2 getPos() {
         return pos;
     }
-        
+
     public float getPosX() {
         return pos.getX();
     }
-    
+
     public float getPosY() {
         return pos.getY();
     }
-    
+
     /**
      * Переместить объект на новую позицию с проверкой маски
      * @param newPos Новая позиция
@@ -76,18 +75,19 @@ public abstract class GameObject {
         int oldRow = (int)getPosY();
         int newCol = (int)newPos.getX();
         int newRow = (int)newPos.getY();
-        
+
         pos = newPos;
-        
+
         if (oldCol != newCol || oldRow != newRow) {
-            Main.engine.print(oldCol, oldRow, " "); // закрасить старую позицию
-            Engine.needRedraw = true;
-            
+            Engine engine = Engine.getInstance();
+            engine.print(oldCol, oldRow, " "); // закрасить старую позицию
+            engine.setNeedRedraw(true);
+
             Map.mask[oldCol][oldRow] = null;
             Map.mask[newCol][newRow] = this;
         }
     }
-    
+
     public TextCharacter getGraphic() {
         return graphic;
     }

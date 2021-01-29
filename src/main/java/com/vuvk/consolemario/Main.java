@@ -1,6 +1,6 @@
 /**
     ConsoleMario
-    Copyright (C) 2019 Anton "Vuvk" Shcherbatykh <vuvk69@gmail.com>
+    Copyright (C) 2019, 2021 Anton "Vuvk" Shcherbatykh <vuvk69@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,23 +16,23 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 package com.vuvk.consolemario;
-import com.vuvk.consolemario.map.Map;
 import com.vuvk.consolemario.logic.Engine;
+import com.vuvk.consolemario.map.Map;
 import java.io.IOException;
 
 /**
  *
  * @author Anton "Vuvk" Shcherbatykh
  */
-public class Main {    
-    public static final Engine engine = new Engine();  
-    
-    public static void main(String ... args) throws IOException {        
-        Map.load();  
-        
-        while (Engine.isRunning) {
+public class Main {
+
+    public static void main(String ... args) throws IOException {
+        Map.load();
+
+        final Engine engine = Engine.getInstance();
+        while (engine.isRunning()) {
             engine.update();
             engine.draw();
         }
-    }    
+    }
 }
