@@ -9,3 +9,6 @@ ConsoleMario uses a number of open source projects to work properly:
 
 
    [Lanterna]: <https://github.com/mabe02/lanterna>
+
+# Build
+`$ mvn package`
